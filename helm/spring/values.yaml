@@ -1,0 +1,13 @@
+# Spring specific due to two things... SERVER_SERVLET_CONTEXT_PATH and actuator
+
+replicas: 2 # Probably won't change
+image: tons/whoami
+tag: latest # Always "dev" ... Or at least always the same as env
+port: 8080 # Probably won't change
+context: /whoami
+host: whoami.dev.cloud.fitfit.dk
+livenessProbeinitialDelaySeconds: 60 # Probably won't change
+readinessProbeinitialDelaySeconds: 70 # Probably won't change
+
+# TODO: resources
+# TODO: ssl

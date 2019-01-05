@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "spring.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "spring.name" . }}
+    helm.sh/chart: {{ include "spring.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  type: ClusterIP
+  ports:
+    - port: {{ .Values.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: {{ include "spring.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
