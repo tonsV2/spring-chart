@@ -1,7 +1,8 @@
-apiVersion: apps/v1beta2
+{{- $fullName := include "spring.fullname" . -}}
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "spring.fullname" . }}
+  name: {{ $fullName }}
   labels:
     app.kubernetes.io/name: {{ include "spring.name" . }}
     helm.sh/chart: {{ include "spring.chart" . }}
@@ -26,6 +27,9 @@ spec:
           env:
             - name: SERVER_SERVLET_CONTEXT_PATH
               value: {{ .Values.context }}
+          envFrom:
+            - configMapRef:
+                name: {{ $fullName }}
           ports:
             - name: http
               containerPort: {{ .Values.port }}

@@ -6,6 +6,8 @@ context: /whoami
 host: whoami.dev.cloud.fitfit.dk
 livenessProbeinitialDelaySeconds: 60
 readinessProbeinitialDelaySeconds: 70
+environmentData:
+  SOME_ENV: SOME_ENV_VALUE
 
 # TODO: resources
 # TODO: ssl
